@@ -9,6 +9,7 @@ public interface ParticipantDAO {
 	void updateParticipant(Participant r);
 	
 	void deleteParticipant(Integer roleId);
+
 	
 	Participant findById(Integer id);
 }
