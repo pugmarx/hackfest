@@ -10,10 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.jasypt.hibernate4.type.EncryptedStringType;
 
-@TypeDef(name = "encryptedString", typeClass = EncryptedStringType.class, parameters = { @Parameter(name = "encryptorRegisteredName", value = "strongHibernateStringEncryptor") })
+@TypeDef(name = "encryptedString", typeClass = EncryptedStringType.class, 
+parameters = { 
+	@Parameter(name = "encryptorRegisteredName", 
+			value = "strongHibernateStringEncryptor") })
 // @DynamicUpdate
 @Entity(name = "participant")
 // @Table(appliesTo = "participant")
@@ -24,6 +28,7 @@ public class Participant {
 	@Column(unique = true, nullable = false)
 	private Integer id;
 
+	@Type(type="encryptedString")
 	private String name;
 
 	@Column(length = 1)
