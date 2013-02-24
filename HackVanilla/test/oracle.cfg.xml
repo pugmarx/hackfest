@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.provider_class">
+			org.jasypt.hibernate4.connectionprovider.EncryptedPasswordDriverManagerConnectionProvider
+		</property>
+		<property name="connection.encryptor_registered_name">
+			strongHibernateStringEncryptor
+		</property>
+
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<property name="hibernate.connection.url">jdbc:Oracle:thin:@192.168.2.115:1521:ORCL</property>
+		<property name="hibernate.connection.username">hackuser1</property>
+		<property name="hibernate.connection.password">test</property>
+		<!-- <property name="hibernate.connection.password">ENC(Q/q8otJA0uxqVnmA9HEw9Q==)</property> -->
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.connection.autocommit">true</property>
+
+
+		<!-- Second level cache -->
+		<!-- <property name="hibernate.cache.use_second_level_cache">true</property> -->
+
+		<mapping package="com.krishagni.hackfest.entity" />
+		<mapping class="com.krishagni.hackfest.entity.Participant" />
+
+	</session-factory>
+</hibernate-configuration>
