@@ -24,8 +24,8 @@
 		<!-- Second level cache -->
 		<!-- <property name="hibernate.cache.use_second_level_cache">true</property> -->
 
-		<mapping package="com.krishagni.hackfest.entities" />
-		<mapping class="com.krishagni.hackfest.entities.Participant" />
+		<mapping package="com.krishagni.hackfest.entity" />
+		<mapping class="com.krishagni.hackfest.entity.Participant" />
 
 	</session-factory>
 </hibernate-configuration>

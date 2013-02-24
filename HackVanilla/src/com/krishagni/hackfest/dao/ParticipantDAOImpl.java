@@ -1,9 +1,15 @@
 package com.krishagni.hackfest.dao;
 
+import java.util.List;
+
+import net.sf.ehcache.util.CircularLossyQueue;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
 
-import com.krishagni.hackfest.entities.Participant;
+import com.krishagni.hackfest.entity.Participant;
 import com.krishagni.hackfest.util.HibUtil;
 
 public class ParticipantDAOImpl implements ParticipantDAO {
@@ -47,13 +53,49 @@ public class ParticipantDAOImpl implements ParticipantDAO {
 	@Override
 	public Participant findById(Integer id) {
 		Session sess = HibUtil.getSessionFactory().openSession();
-		Transaction tx = sess.beginTransaction();
+		// Transaction tx = sess.beginTransaction();
 		Participant r = (Participant) sess.get(Participant.class, id);
-		tx.commit();
+		// tx.commit();
 		sess.flush();
 		sess.clear();
 		sess.close();
 		return r;
 	}
+
+	@Override
+	public List<Participant> getList(Criterion... criterion) {
+		Session sess = HibUtil.getSessionFactory().openSession();
+		Criteria criteria = sess.createCriteria(Participant.class);
+		for (Criterion c : criterion) {
+			criteria.add(c);
+		}
+		sess.close();
+		return criteria.list();
+	}
+
+	public List<Participant> getList(Session sess, Criterion... criterion) {
+		// Session sess = HibUtil.getSessionFactory().openSession();
+		Criteria criteria = sess.createCriteria(Participant.class);
+		for (Criterion c : criterion) {
+			criteria.add(c);
+		}
+		// sess.close();
+		return criteria.list();
+	}
+
+	@Override
+	public int getCount(Criterion... criterion) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	// @Override
+	// public List<Participant> getByCountry(String country) {
+	// Session sess = HibUtil.getSessionFactory().openSession();
+	// Transaction tx = sess.beginTransaction();
+	//
+	// sess.close();
+	// return null;
+	// }
 
 }

@@ -12,7 +12,7 @@
 
 		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
 		<property name="hibernate.connection.url">jdbc:Oracle:thin:@192.168.2.115:1521:orcl</property>
-		<property name="hibernate.connection.username">hackuser</property>
+		<property name="hibernate.connection.username">hackuser1</property>
 		<property name="hibernate.connection.password">test</property>
 		<!-- <property name="hibernate.connection.password">ENC(Q/q8otJA0uxqVnmA9HEw9Q==)</property> -->
 		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
@@ -24,8 +24,8 @@
 		<!-- Second level cache -->
 		<!-- <property name="hibernate.cache.use_second_level_cache">true</property> -->
 
-		<mapping package="com.krishagni.hackfest.entities" />
-		<mapping class="com.krishagni.hackfest.entities.Participant" />
+		<mapping package="com.krishagni.hackfest.entity" />
+		<mapping class="com.krishagni.hackfest.entity.Participant" />
 
 	</session-factory>
 </hibernate-configuration>

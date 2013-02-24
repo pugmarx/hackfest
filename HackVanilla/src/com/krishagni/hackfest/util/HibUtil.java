@@ -1,6 +1,7 @@
 package com.krishagni.hackfest.util;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.Parameter;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -9,14 +10,14 @@ import org.jasypt.hibernate4.encryptor.HibernatePBEEncryptorRegistry;
 
 public class HibUtil {
 	private static final SessionFactory sessionFactory = buildSessionFactory();
-	//private static final String ORACLECFG = "oracle.cfg.xml";
-	private static final String MYSQLCFG = "mysql.cfg.xml";
+	private static final String ORACLECFG = "oracle.cfg.xml";
+	//private static final String MYSQLCFG = "mysql.cfg.xml";
 
 	private static SessionFactory buildSessionFactory() {
 		try {
 			StandardPBEStringEncryptor strongEncryptor = new StandardPBEStringEncryptor();
 			strongEncryptor.setPassword("hackfe$t");
-
+			strongEncryptor.setAlgorithm("PBEWithMD5AndTripleDES");
 			HibernatePBEEncryptorRegistry registry = HibernatePBEEncryptorRegistry
 					.getInstance();
 			registry.registerPBEStringEncryptor(
@@ -30,8 +31,8 @@ public class HibUtil {
 			// Configuration().configure(MYSQLCONFIG).buildSessionFactory();
 
 			Configuration configuration = new Configuration();
-			//configuration.configure(ORACLECFG);
-			configuration.configure(MYSQLCFG);
+			configuration.configure(ORACLECFG);
+			//configuration.configure(MYSQLCFG);
 
 			ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
 					.applySettings(configuration.getProperties())

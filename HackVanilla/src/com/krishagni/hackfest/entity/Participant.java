@@ -1,44 +1,55 @@
 /**
  * 
  */
-package com.krishagni.hackfest.entities;
+package com.krishagni.hackfest.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.Parameter;
-import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.jasypt.hibernate4.type.EncryptedStringType;
 
-@TypeDef(name = "encryptedString", typeClass = EncryptedStringType.class, 
-parameters = { 
-	@Parameter(name = "encryptorRegisteredName", 
-			value = "strongHibernateStringEncryptor") })
+@TypeDef(name = "encryptedString", typeClass = EncryptedStringType.class, parameters = { @Parameter(name = "encryptorRegisteredName", value = "strongHibernateStringEncryptor") })
 // @DynamicUpdate
-@Entity(name = "participant")
+@Entity(name = "PARTICIPANT")
 // @Table(appliesTo = "participant")
 public class Participant {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	// @GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "participant_seq", sequenceName = "participant_seq", allocationSize = 1)
+	// @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "participant_seq")
 	@Column(unique = true, nullable = false)
 	private Integer id;
 
-	@Type(type="encryptedString")
+	//@Type(type = "encryptedString")
 	private String name;
 
 	@Column(length = 1)
+	//@Type(type = "encryptedString")
 	private String gender;
 
+	//@Type(type = "encryptedString")
 	private String street;
+	
+	//@Type(type = "encryptedString")
 	private String city;
+	
+	//@Type(type = "encryptedString")
 	private String state;
+
+	// @Type(type = "encryptedString")
 	private String country;
+
+	//@Type(type = "encryptedString")
 	private String phone;
+	
+	//@Type(type = "encryptedString")
 	private String zip;
 
 	public Integer getId() {

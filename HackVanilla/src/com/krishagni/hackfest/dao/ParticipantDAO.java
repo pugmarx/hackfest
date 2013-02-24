@@ -1,6 +1,11 @@
 package com.krishagni.hackfest.dao;
 
-import com.krishagni.hackfest.entities.Participant;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+
+import com.krishagni.hackfest.entity.Participant;
 
 public interface ParticipantDAO {
 
@@ -10,6 +15,15 @@ public interface ParticipantDAO {
 	
 	void deleteParticipant(Integer roleId);
 
-	
 	Participant findById(Integer id);
+	
+	List<Participant> getList(Criterion...criterion);
+	List<Participant> getList(Session sess, Criterion...criterion);
+	int getCount(Criterion...criterion);
+
+	// <T> List<T> getList(Class<T> entityClass, Map<String, Object> parameters,
+	// Criterion... criterion) throws Exception;
+	//
+	// <T> int getCount(Class<T> entityClass, Map<String, Object> parameters,
+	// Criterion... criterion) throws Exception;
 }
